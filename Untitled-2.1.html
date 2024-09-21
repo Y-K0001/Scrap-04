@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Bootstrap Navbar with Custom Colors and Real-time Date & Time</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        /* เปลี่ยนสีฟอนต์แบรนด์ */
+        .navbar-brand {
+            font-size: 2rem;
+            color: #ff0000;
+        }
+
+        /* เปลี่ยนสีพื้นหลัง Navbar */
+        .navbar {
+            background-color: #000000;
+            padding: 1.5rem;
+        }
+
+        /* เปลี่ยนสีฟอนต์หัวข้อ Login */
+        .card-title {
+            font-size: 2rem;
+            color: #000000;
+        }
+
+        /* เปลี่ยนสีของการ์ด */
+        .card {
+            margin-top: 2rem;
+            padding: 2rem;
+            background-color: #fefdfd;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* เปลี่ยนสีของฟอร์ม */
+        .form-control {
+            font-size: 1.2rem;
+            border: 1px solid #000000;
+        }
+
+        /* เปลี่ยนสีปุ่ม Login */
+        .btn-primary {
+            background-color: #37c357;
+            border-color: #36c056;
+        }
+
+        .btn-primary:hover {
+            background-color: #075318;
+            border-color: #0a4518;
+        }
+
+        /* ขยายขนาดของไอคอนตาและเปลี่ยนสี */
+        .password-toggle i {
+            font-size: 1.5rem;
+            color: #000000;
+        }
+
+        /* ใช้ฟอนต์ Josefin Sans */
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #eceef0;
+        }
+
+        /* เวลาและวันที่แบบเรียลไทม์ */
+        .date-time {
+            font-size: 1.5rem;
+            text-align: center;
+            margin-top: 20px;
+            color: #000000;
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bootstrap Navbar -->
+    <nav class="navbar navbar-expand-lg">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <a class="navbar-brand" href="#">OEM SCARP</a>
+
+      
+    </nav>
+
+    
+    
+
+    <!-- แสดงเวลาและวันที่แบบเรียลไทม์ที่ด้านล่างสุด -->
+    <div class="date-time" id="dateTime"></div>
+
+    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for toggling password visibility -->
+    <script>
+        function togglePassword() {
+            var passwordField = document.getElementById("password");
+            var passwordToggle = document.querySelector(".password-toggle i");
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                passwordToggle.classList.remove("fa-eye");
+                passwordToggle.classList.add("fa-eye-slash");
+            } else {
+                passwordField.type = "password";
+                passwordToggle.classList.remove("fa-eye-slash");
+                passwordToggle.classList.add("fa-eye");
+            }
+        }
+
+        // ฟังก์ชันแสดงเวลาและวันที่แบบเรียลไทม์
+        function showTime() {
+            var now = new Date();
+
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+            var seconds = now.getSeconds();
+
+            hours = (hours < 10) ? '0' + hours : hours;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+            seconds = (seconds < 10) ? '0' + seconds : seconds;
+
+            var day = now.getDate();
+            var month = now.getMonth() + 1;
+            var year = now.getFullYear();
+
+            day = (day < 10) ? '0' + day : day;
+            month = (month < 10) ? '0' + month : month;
+
+            var timeString = hours + ':' + minutes + ':' + seconds;
+            var dateString = day + '/' + month + '/' + year;
+
+            document.getElementById('dateTime').textContent = dateString + ' ' + timeString;
+
+            setTimeout(showTime, 1000);
+        }
+
+        window.onload = showTime;
+        
+    </script>
+    
+</body>
+</html>

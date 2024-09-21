@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>EffiScrap Auto Request - Page 2</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Josefin Sans', sans-serif;
+            background-color: #ffffff;
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: #333333;
+            padding: 10px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar h1 {
+            color: #ff0000;
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        .navbar span {
+            color: #fff;
+            font-size: 1.2rem;
+        }
+
+        .logout-btn {
+            background-color: #888888;
+            border: none;
+            padding: 5px 10px;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main content */
+        .container {
+            margin-top: 30px;
+            max-width: 600px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-control {
+            border: 2px solid #000;
+            padding: 10px;
+            font-size: 1.1rem;
+        }
+
+        label {
+            font-size: 1.2rem;
+        }
+
+        /* Footer for time display */
+        .footer {
+            background-color: #333333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <div class="navbar">
+        <div>
+            <h1>EffiScrap Auto Request</h1>
+            <p style="margin: 0;">SCAN-OEM</p>
+        </div>
+        <div>
+            <span>username</span>
+            <button class="logout-btn">Logout</button>
+        </div>
+    </div>
+
+    <!-- Main Form -->
+    <div class="container">
+        <form>
+            <div class="form-group">
+                <label for="productionNumber">Production Number :</label>
+                <input type="text" class="form-control" id="productionNumber" placeholder="Enter production number">
+            </div>
+            <div class="form-group">
+                <label for="batchNo">Batch No :</label>
+                <input type="text" class="form-control" id="batchNo" placeholder="Enter batch number">
+            </div>
+            <div class="form-group">
+                <label for="model">Model :</label>
+                <input type="text" class="form-control" id="model" placeholder="Enter model">
+            </div>
+        </form>
+    </div>
+
+    <!-- Footer with Date and Time -->
+    <div class="footer" id="dateTime"></div>
+
+    <!-- Bootstrap JS and dependencies (jQuery and Popper.js) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <!-- JavaScript for displaying date and time -->
+    <script>
+        function showTime() {
+            var now = new Date();
+            var day = now.getDate();
+            var month = now.getMonth() + 1;
+            var year = now.getFullYear();
+            var hours = now.getHours();
+            var minutes = now.getMinutes();
+
+            day = (day < 10) ? '0' + day : day;
+            month = (month < 10) ? '0' + month : month;
+            minutes = (minutes < 10) ? '0' + minutes : minutes;
+
+            var dateString = day + '/' + month + '/' + year;
+            var timeString = hours + ':' + minutes;
+            document.getElementById('dateTime').textContent = dateString + ' ' + timeString;
+
+            setTimeout(showTime, 60000); // Update every minute
+        }
+
+        window.onload = showTime;
+    </script>
+</body>
+</html>
